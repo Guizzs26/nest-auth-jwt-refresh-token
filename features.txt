@@ -1,0 +1,88 @@
+# Projeto de Sistema de Autenticação com NestJS
+
+## Configuração Inicial
+
+- [ ] Configurar Docker e PostgreSQL
+  - Criar um arquivo `docker-compose.yml` na raiz do projeto
+  - Subir o Docker com `docker-compose up -d`
+
+- [ ] Instalar Dependências
+  - Instalar TypeORM e PostgreSQL: `npm install @nestjs/typeorm typeorm pg`
+  - Instalar Passport e JWT: `npm install @nestjs/passport passport passport-local passport-jwt`
+  - Instalar o módulo JWT e bcryptjs: `npm install @nestjs/jwt bcryptjs`
+
+## Configuração do TypeORM
+
+- [ ] Configurar o TypeORM no NestJS
+  - Configurar a conexão com o banco de dados no arquivo `app.module.ts`
+  - Criar entidades e repositórios para o usuário
+
+## Configuração do Sistema de Autenticação
+
+- [ ] Configurar Módulo de Autenticação
+  - Criar o módulo de autenticação
+  - Criar o serviço de autenticação
+  - Criar o controlador de autenticação
+
+- [ ] Configurar Módulo de Usuário
+  - Criar o módulo de usuário
+  - Criar o serviço de usuário
+  - Criar o controlador de usuário
+
+## Funcionalidades de Autenticação
+
+- [ ] Implementar Registro de Usuário
+  - Criar DTOs para registro de usuário
+  - Implementar a lógica de registro no serviço de autenticação
+  - Adicionar endpoint de registro no controlador de autenticação
+
+- [ ] Implementar Login de Usuário
+  - Criar DTOs para login de usuário
+  - Implementar a lógica de login no serviço de autenticação
+  - Adicionar endpoint de login no controlador de autenticação
+
+- [ ] Implementar Logout de Usuário
+  - Implementar a lógica de logout no serviço de autenticação
+  - Adicionar endpoint de logout no controlador de autenticação
+
+## Funcionalidades de Recuperação de Senha
+
+- [ ] Implementar Recuperação de Senha
+  - Criar DTOs para recuperação de senha
+  - Implementar a lógica de recuperação de senha no serviço de autenticação
+  - Adicionar endpoint de recuperação de senha no controlador de autenticação
+
+- [ ] Implementar Redefinição de Senha
+  - Criar DTOs para redefinição de senha
+  - Implementar a lógica de redefinição de senha no serviço de autenticação
+  - Adicionar endpoint de redefinição de senha no controlador de autenticação
+
+## Funcionalidades de Confirmação de Senha
+
+- [ ] Implementar Confirmação de Senha para Cadastro
+  - Criar DTOs para confirmação de senha
+  - Implementar a lógica de confirmação de senha no serviço de autenticação
+  - Adicionar endpoint de confirmação de senha no controlador de autenticação
+
+## Funcionalidades de Envio de Email
+
+- [ ] Implementar Envio de Email para Confirmar Conta
+  - Configurar serviço de email
+  - Implementar a lógica de envio de email no serviço de autenticação
+  - Adicionar endpoint para reenvio de email de confirmação no controlador de autenticação
+
+- [ ] Implementar Envio de Email para Mudar Senha
+  - Implementar a lógica de envio de email para mudança de senha no serviço de autenticação
+  - Adicionar endpoint para reenvio de email de mudança de senha no controlador de autenticação
+
+## Finalização
+
+- [ ] Testar todas as funcionalidades implementadas
+- [ ] Documentar a API utilizando Swagger ou outra ferramenta de documentação
+- [ ] Configurar scripts no `package.json` para rodar o projeto com Docker
+
+## Melhoria Contínua
+
+- [ ] Implementar testes unitários para os serviços e controladores
+- [ ] Implementar testes de integração para a API
+- [ ] Revisar e melhorar a segurança da aplicação
