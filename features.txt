@@ -2,7 +2,7 @@
 
 ## Configuração Inicial
 
-- [ ] Configurar Docker e PostgreSQL
+- [✅] Configurar Docker e PostgreSQL
   - Criar um arquivo `docker-compose.yml` na raiz do projeto
   - Subir o Docker com `docker-compose up -d`
 
