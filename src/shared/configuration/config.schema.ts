@@ -1,6 +1,6 @@
 import * as Joi from '@hapi/joi';
 
-import { NODE_ENV } from 'src/app/constants/app.constants';
+import { NODE_ENV } from '../app/constants/app.constants';
 
 export const configSchema = Joi.object({
   PORT: Joi.number().required(),

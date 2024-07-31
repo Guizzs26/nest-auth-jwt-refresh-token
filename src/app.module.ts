@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 
 import { ConfigModule } from '@nestjs/config';
-import { configSchema } from './configuration/config.schema';
+import { configSchema } from './shared/configuration/config.schema';
+
+import { DatabaseModule } from './shared/database/database.module';
 
 @Module({
   imports: [
@@ -13,6 +15,7 @@ import { configSchema } from './configuration/config.schema';
       validationSchema: configSchema,
       isGlobal: true,
     }),
+    DatabaseModule,
   ],
   controllers: [],
   providers: [],
