@@ -1,32 +1,11 @@
-import { IUser } from 'src/common/entities/user.entity.interface';
+import { AbstractEntity } from 'src/common/entities/user.abstract.entity';
 import { Authentication } from 'src/domain/authentication/entities/authentication.entity';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Index,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, Index } from 'typeorm';
 
-@Entity('users')
-export class User implements IUser {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ unique: true })
-  email: string;
-
+@Entity({ name: 'users' })
+export class User extends AbstractEntity {
   @Column()
-  password: string;
-
-  @CreateDateColumn()
-  createdAt?: Date;
-
-  @UpdateDateColumn()
-  updatedAt?: Date;
+  public firstName: string;
 
   @OneToOne(
     () => Authentication,

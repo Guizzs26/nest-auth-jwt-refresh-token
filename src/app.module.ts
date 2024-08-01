@@ -5,6 +5,8 @@ import { configSchema } from './shared/configuration/config.schema';
 
 import { DatabaseModule } from './shared/database/database.module';
 
+import { UsersModule } from './domain/user/user.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,6 +18,7 @@ import { DatabaseModule } from './shared/database/database.module';
       isGlobal: true,
     }),
     DatabaseModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],
