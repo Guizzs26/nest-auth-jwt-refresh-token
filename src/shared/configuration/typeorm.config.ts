@@ -1,7 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { SnakeNamingStrategy } from '../database/strategies/snake-naming.strategy';
 import { NODE_ENV } from '../app/constants/app.constants';
+import { SnakeNamingStrategy } from '../database/strategies/snake-naming.strategy';
 
 export const typeOrmConfig = (
   configService: ConfigService,
