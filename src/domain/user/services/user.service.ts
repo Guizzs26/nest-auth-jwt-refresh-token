@@ -10,7 +10,7 @@ import { QueryRunner } from 'typeorm';
 import { User } from '../entities/user.entity';
 
 @Injectable()
-export class UsersService {
+export class UserService {
   constructor(private readonly _userRepository: UsersRepository) {}
 
   async createUser(
