@@ -1,8 +1,12 @@
 import { IUser } from 'src/common/entities/user.entity.interface';
+import { Authentication } from 'src/domain/authentication/entities/authentication.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -23,4 +27,13 @@ export class User implements IUser {
 
   @UpdateDateColumn()
   updatedAt?: Date;
+
+  @OneToOne(
+    () => Authentication,
+    (authentication: Authentication) => authentication.user,
+    { eager: true, nullable: false, onDelete: 'CASCADE' },
+  )
+  @JoinColumn()
+  @Index()
+  public authentication: Authentication;
 }
