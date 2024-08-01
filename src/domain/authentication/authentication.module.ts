@@ -6,10 +6,12 @@ import { User } from 'src/domain/user/entities/user.entity';
 import { Authentication } from './entities/authentication.entity';
 import { UserService } from '../user/services/user.service';
 import { UsersModule } from '../user/user.module';
+import { AuthenticationController } from './controllers/authentication.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, Authentication]), UsersModule],
-  providers: [AuthenticationService, UserService, AuthenticationRepository],
-  exports: [AuthenticationService],
+  providers: [AuthenticationService, AuthenticationRepository, UserService],
+  controllers: [AuthenticationController],
+  exports: [AuthenticationService, AuthenticationRepository],
 })
 export class AuthenticationModule {}

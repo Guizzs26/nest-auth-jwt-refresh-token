@@ -18,8 +18,14 @@ export class UserService {
     authentication: Authentication,
     queryRunner: QueryRunner,
   ): Promise<User> {
-    if (!createUserDto.email || !createUserDto.password) {
-      throw new BadRequestException('Email and password are required');
+    if (
+      !createUserDto.firstName ||
+      !createUserDto.emailAddress ||
+      !createUserDto.password
+    ) {
+      throw new BadRequestException(
+        'All required fields (firstName, emailAddress, password) must be provided',
+      );
     }
 
     const user = this._userRepository.create({
@@ -28,8 +34,10 @@ export class UserService {
     });
 
     try {
+      console.log('Saving user...');
       return await queryRunner.manager.save(user);
     } catch (error) {
+      console.error('Error saving user:', error);
       throw new BadRequestException('Failed to create user');
     }
   }

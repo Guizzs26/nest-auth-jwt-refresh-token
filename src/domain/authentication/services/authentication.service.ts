@@ -22,8 +22,6 @@ export class AuthenticationService {
   ) {}
 
   async registration(registrationDto: RegistrationDto): Promise<User> {
-    let user: User;
-
     const queryRunner = this._dataSource.createQueryRunner();
 
     await queryRunner.connect();
@@ -32,19 +30,25 @@ export class AuthenticationService {
     try {
       this._validateRegistrationDto(registrationDto);
 
+      console.log('Creating authentication...');
       const authentication = await this._createAuthentication(
         registrationDto,
         queryRunner,
       );
 
-      user = await this._userService.createUser(
+      console.log('Creating user...');
+      const user = await this._userService.createUser(
         registrationDto,
         authentication,
         queryRunner,
       );
 
+      console.log('Committing transaction...');
       await queryRunner.commitTransaction();
+
+      return user;
     } catch (error) {
+      console.error('Error during registration:', error);
       await queryRunner.rollbackTransaction();
 
       if (error?.code === PostgresErrorCode.UniqueViolation) {
@@ -55,14 +59,13 @@ export class AuthenticationService {
         'An error occurred during registration',
       );
     } finally {
+      console.log('Releasing query runner...');
       await queryRunner.release();
     }
-
-    return user;
   }
 
   private _validateRegistrationDto(dto: RegistrationDto): void {
-    if (!dto.email || !dto.password) {
+    if (!dto.emailAddress || !dto.password) {
       throw new ConflictException('Email and password are required');
     }
   }
@@ -75,6 +78,7 @@ export class AuthenticationService {
       createAuthenticationDto,
     );
 
+    console.log('Saving authentication...');
     return queryRunner.manager.save(authentication);
   }
 }
