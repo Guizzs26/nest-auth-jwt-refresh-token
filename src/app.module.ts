@@ -6,6 +6,7 @@ import { configSchema } from './shared/configuration/config.schema';
 import { DatabaseModule } from './shared/database/database.module';
 
 import { UsersModule } from './domain/user/user.module';
+import { AuthenticationModule } from './domain/authentication/authentication.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UsersModule } from './domain/user/user.module';
     }),
     DatabaseModule,
     UsersModule,
+    AuthenticationModule,
   ],
   controllers: [],
   providers: [],

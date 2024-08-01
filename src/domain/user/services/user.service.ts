@@ -18,12 +18,10 @@ export class UserService {
     authentication: Authentication,
     queryRunner: QueryRunner,
   ): Promise<User> {
-    // Validação simples (ajuste conforme necessário)
     if (!createUserDto.email || !createUserDto.password) {
       throw new BadRequestException('Email and password are required');
     }
 
-    // Criar o usuário com os dados fornecidos
     const user = this._userRepository.create({
       ...createUserDto,
       authentication,
@@ -36,23 +34,20 @@ export class UserService {
     }
   }
 
-  async findUserById(id: string): Promise<User> {
-    const user = await this._userRepository.findUnique(id);
+  async findUserById(uuid: string): Promise<User> {
+    const user = await this._userRepository.findOne({ where: { uuid } });
 
     if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
+      throw new NotFoundException(`User not found`);
     }
 
     return user;
   }
 
-  async findUserByEmail(email: string): Promise<User> {
-    const user = await this._userRepository.findOne({ email });
-
-    if (!user) {
-      throw new NotFoundException(`User with email ${email} not found`);
-    }
-
-    return user;
+  async findByEmail(email: string): Promise<User | null> {
+    return this._userRepository.findOne({
+      where: { authentication: { emailAddress: email } },
+      relations: ['authentication'],
+    });
   }
 }
